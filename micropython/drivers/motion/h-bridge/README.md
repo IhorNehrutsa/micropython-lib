@@ -141,9 +141,12 @@ Support PWM signal frequency within 20KHz.
 
 ![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/277a5ec9-4266-4c6d-8855-8174c7261a22)
 
+* ### 3) MCPWM H-Bridge driver
+
+![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/e441928b-fe24-4727-8385-5fb115b5de15)
 
 
-* ### 3) IN1/IN2/PWM H-Bridge driver
+* ### 4) IN1/IN2/PWM H-Bridge driver
 
 TB6612 based modules
 
@@ -156,9 +159,9 @@ STBY= 2  # Enable is high level
 motor = HBridgeEn(HBridgeInInPwm(IN1, IN2, PWM_PIN), STBY)  # start in Standby mode
 ```
 
-* ### 4) PWM1/PWM2 H-Bridge driver
+* ### 5) PWM1/PWM2 H-Bridge driver
 DRV8871, DRV8837, DRV8838 based modules
 
 
-* ### 5) L298, L293 and L9110 based modules
+* ### 6) L298, L293 and L9110 based modules
 
