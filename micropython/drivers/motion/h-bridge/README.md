@@ -89,7 +89,7 @@ Peak current: 30 A
 
 
 
-* ### 2) 4PWM H-Bridge driver
+* ### 2) 4PWM/4IN H-Bridge driver
 
 Equivalent circuit is:
 
@@ -141,10 +141,42 @@ Support PWM signal frequency within 20KHz.
 
 ![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/277a5ec9-4266-4c6d-8855-8174c7261a22)
 
-* ### 3) MCPWM H-Bridge driver
+* ### 3) 2MCPWM/4IN H-Bridge driver
+
+Equivalent circuit is:
 
 ![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/e441928b-fe24-4727-8385-5fb115b5de15)
 
+
+| PWM1 | PWM2 | PWM3 | PWM4 | Function                             |
+|:----:|:----:|:----:|:----:|--------------------------------------|
+|  S1  |  S2  |  S3  |  S4  |                                      |
+|------|------|------|------|--------------------------------------|
+|   1  |   0  | _PWM |  PWM | Motor moves forward                  |
+|  PWM | _PWM |   0  |   1  | -/-                                  |
+| _PWM |  PWM |   1  |   0  | Motor moves backward                 |
+|   0  |   1  |  PWM | _PWM | -/-                                  |
+|   0  |   0  |   0  |   0  | Motor coasts (free runs)             |
+|   1  |   0  |   0  |   0  | -/-                                  |
+|   0  |   1  |   0  |   0  | -/-                                  |
+|   0  |   0  |   1  |   0  | -/-                                  |
+|   0  |   0  |   0  |   1  | -/-                                  |
+|   1  |   0  |   1  |   0  | Brakes(decelerates) on the high side |
+|   0  |   1  |   0  |   1  | Brakes(decelerates) on the low side  |
+|   1  |   1  |   X  |   X  | Short circuit!                       |
+|   X  |   X  |   1  |   1  | -/-                                  |
+
+where:
+
+MCPWM1 - High side left aka S1, Lower left aka S2
+
+MCPWM2 - High side right aka S3, Lower right aka S4
+
+For example:
+```
+motor = HBridge2McPwm(22, 4, 23, 2)
+motor.go(2**16//4)  # 25% of speed
+```
 
 * ### 4) IN1/IN2/PWM H-Bridge driver
 
