@@ -93,7 +93,8 @@ Peak current: 30 A
 
 Equivalent circuit is:
 
-![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/9ca5246a-f488-4db5-b8e8-b85068f07597)
+![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/3ad73687-16d0-44f5-9991-e068b461bbae)
+
 
 | PWM1 | PWM2 | PWM3 | PWM4 | Function                             |
 |:----:|:----:|:----:|:----:|--------------------------------------|
@@ -145,7 +146,7 @@ Support PWM signal frequency within 20KHz.
 
 Equivalent circuit is:
 
-![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/e441928b-fe24-4727-8385-5fb115b5de15)
+![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/1bc78b01-6c67-4a6b-ab3e-01095e6bf25f)
 
 
 | PWM1 | PWM2 | PWM3 | PWM4 | Function                             |
