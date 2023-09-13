@@ -118,11 +118,11 @@ where:
 
 PWM1 - High side left aka S1
 
-PWM2 - Lower left aka S2
+PWM2 - Low side left aka S2
 
 PWM3 - High side right aka S3
 
-PWM4 - Lower right aka S4
+PWM4 - Low side right aka S4
 
 For example:
 ```
@@ -149,29 +149,31 @@ Equivalent circuit is:
 ![image](https://github.com/IhorNehrutsa/micropython-lib/assets/70886343/1bc78b01-6c67-4a6b-ab3e-01095e6bf25f)
 
 
-| PWM1 | PWM2 | PWM3 | PWM4 | Function                             |
-|:----:|:----:|:----:|:----:|--------------------------------------|
-|  S1  |  S2  |  S3  |  S4  |                                      |
-|------|------|------|------|--------------------------------------|
-|   1  |   0  | _PWM |  PWM | Motor moves forward                  |
-|  PWM | _PWM |   0  |   1  | -/-                                  |
-| _PWM |  PWM |   1  |   0  | Motor moves backward                 |
-|   0  |   1  |  PWM | _PWM | -/-                                  |
-|   0  |   0  |   0  |   0  | Motor coasts (free runs)             |
-|   1  |   0  |   0  |   0  | -/-                                  |
-|   0  |   1  |   0  |   0  | -/-                                  |
-|   0  |   0  |   1  |   0  | -/-                                  |
-|   0  |   0  |   0  |   1  | -/-                                  |
-|   1  |   0  |   1  |   0  | Brakes(decelerates) on the high side |
-|   0  |   1  |   0  |   1  | Brakes(decelerates) on the low side  |
-|   1  |   1  |   X  |   X  | Short circuit!                       |
-|   X  |   X  |   1  |   1  | -/-                                  |
+| MCPWM1 | MCPWM1 | MCPWM2 | MCPWM2 | Function                             |
+|:------:|:------:|:------:|:------:|--------------------------------------|
+|   S1   |   S2   |   S3   |   S4   |                                      |
+|--------|--------|--------|--------|--------------------------------------|
+|    1   |    0   |  _PWM  |   PWM  | Motor moves forward                  |
+|   PWM  |  _PWM  |    0   |    1   | -/-                                  |
+|  _PWM  |   PWM  |    1   |    0   | Motor moves backward                 |
+|    0   |    1   |   PWM  |  _PWM  | -/-                                  |
+|    0   |    0   |    0   |    0   | Motor coasts (free runs)             |
+|    1   |    0   |    0   |    0   | -/-                                  |
+|    0   |    1   |    0   |    0   | -/-                                  |
+|    0   |    0   |    1   |    0   | -/-                                  |
+|    0   |    0   |    0   |    1   | -/-                                  |
+|    1   |    0   |    1   |    0   | Brakes(decelerates) on the high side |
+|    0   |    1   |    0   |    1   | Brakes(decelerates) on the low side  |
+|    1   |    1   |    X   |    X   | Short circuit!                       |
+|    X   |    X   |    1   |    1   | -/-                                  |
 
 where:
 
-MCPWM1 - High side left aka S1, Lower left aka S2
+MCPWM1 - High side left aka S1 and Low side left aka S2
 
-MCPWM2 - High side right aka S3, Lower right aka S4
+MCPWM2 - High side right aka S3 and Low side right aka S4
+
+PWM and _PWM are complementary pwm's at MCPWMx
 
 For example:
 ```
