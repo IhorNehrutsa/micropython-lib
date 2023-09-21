@@ -130,3 +130,20 @@ class HBridge2McPwm:
                 self.stop()
         else:
             self.stop()
+
+
+
+from time import sleep
+m = MCPWM(0, (16,17), waveform=14)
+sleep(1)
+m.force00()
+sleep(1)
+m.force01()
+sleep(1)
+m.force10()
+sleep(1)
+m.force_10()
+sleep(1)
+m.force0_1()
+sleep(1)
+m.force_1_1()
