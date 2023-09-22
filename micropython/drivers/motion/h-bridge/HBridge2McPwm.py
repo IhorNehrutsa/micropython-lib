@@ -134,16 +134,16 @@ class HBridge2McPwm:
 
 
 from time import sleep
-m = MCPWM(0, (16,17), waveform=14)
-sleep(1)
+m = MCPWM(0, (16,17), waveform=14, deadtime=2**16//8)
+print(m)
+print(dir(m))
+1/0
 m.force00()
-sleep(1)
 m.force01()
-sleep(1)
 m.force10()
-sleep(1)
 m.force_10()
-sleep(1)
 m.force0_1()
-sleep(1)
 m.force_1_1()
+m.pause()
+m.resume()
+m.freq(1000)
