@@ -164,9 +164,27 @@ class IntEnum(Enum):
     _v_t = int
 
 
-class StrEnum(Enum):
+_STR_FINALIZED = object()
+
+
+class StrEnum(str, Enum):
+    """String members that retain their declared enum class on stock MicroPython."""
+
     _v_t = str
 
+    def __new__(cls, value=None, names=None, *, start=1):
+        if names is not None:
+            if cls is not StrEnum:
+                raise TypeError("cannot extend an enum")
+            return Enum.__new__(cls, value, names, start=start)
+        if "__members__" not in cls.__dict__:
+            raise TypeError("StrEnum is a base class")
+        if value is None:
+            return cls
+        for member in cls.__members__:
+            if member.value == value or member.name == value:
+                return member
+        raise ValueError(f"{value!r} is not a valid {cls.__name__}")
 
 # install class-builder hook
 import builtins
